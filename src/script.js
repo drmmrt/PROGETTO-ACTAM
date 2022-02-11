@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { firebase } from '@firebase/app';
 import "firebase/firestore";
 import 'regenerator-runtime/runtime';
-import { speed } from "jquery";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,10 +17,8 @@ const firebaseConfig = {
   appId: "1:934505841889:web:49c57ffed9d1f0f5ad23a0"
 };
 
-var numeroPreset= 0;
+var numeroPreset = 0;
 var preset = [];
-
-
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -34,22 +31,24 @@ function dbCallback(snapshot) {
     ...doc.data(),
   }));
   console.log(preset)
-  
+
 }
-numeroPreset=preset.length
+numeroPreset = preset.length
 
 window.preset = preset;
 window.numeroPreset = numeroPreset;
 
-const opt = document.createElement("option");
+let options = [];
 
-function creaOpzioni() {
-  for (var i=0; i<= preset.length; i++) {
-    opt.setAttribute(preset[i].Name,i);
-  }
-}
-
-window.opt = opt;
+// function creaOpzioni() {
+//   for (var i = 0; i <= preset.length; i++) {
+//     options.push(document.createElement("option"));
+//     console.log(preset.map(p=>p.value))
+//     options[i].setAttribute("value",i);
+//     options[i].innerHTML(window.preset[i].Name);
+//   }
+// }
+// creaOpzioni()
 
 function upload() {
   let NewPreset = {};
@@ -544,14 +543,6 @@ document.onkeyup = (e) => {
   stopNote(keys.indexOf(e.key), isOn);
 };
 
-//????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-function setWaveType(string) {
-  waveType = string;
-}
-
-setWaveType(
-  document.querySelector(".waveform.active").classList.value.split(" ")[1]
-);
 
 var LOWfilterSliderFreq = 0.5;
 var HIGHfilterSliderFreq = 0.001;
@@ -752,12 +743,11 @@ function setSwitcher(value) {
   isOn = value;
   document.querySelector("#turnoff-button").style = `background-color: ${isOn ? "#7fc846" : "#760f00"
     }`;
-  // console.log(isOn)
 };
 
 document
   .querySelector("#turnoff-button")
-  .setAttribute("onclick", `setSwitcher(!isOn)`);
+  .addEventListener("click", ()=>setSwitcher(!isOn));
 
 document.querySelector("#turnoff-button").style = `background-color: ${isOn ? "#7fc846" : "#760f00"
   }`;
@@ -770,15 +760,11 @@ function setActive(string) {
 
 // si crea una funzione setActive per ogni pulsante e la si conserva in un array
 // si assegnano ai bottoni le funzioni contenute nell'array
-let functionsArray = [];
-let f = 0;
-document.querySelectorAll(".waveform").forEach((button) => {    // si assegnano ai bottoni le funzioni contenuto nell'array
-  functionsArray.push(function () {
-    setActive(button.classList.value.split(" ")[1]);
-  });
-  button.setAttribute("click", `functionsArray[${f}]()`);
-  f++;
-});
+
+document.querySelector('.sine').addEventListener("click", () => setActive('sine'))
+document.querySelector('.square').addEventListener("click", () => setActive('square'))
+document.querySelector('.triangle').addEventListener("click", () => setActive('triangle'))
+document.querySelector('.sawtooth').addEventListener("click", () => setActive('sawtooth'))
 
 //VISUALIZZATORE
 
@@ -816,8 +802,6 @@ function draw1() {
 }
 
 setInterval(draw1, 60)
-
-
 
 
 // INVILUPPI
