@@ -19,11 +19,14 @@ const firebaseConfig = {
 
 var numeroPreset = 0;
 var preset = [];
+let options = [];
+let q = 0;
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 db.collection("presets").onSnapshot(dbCallback);
+var DropDownSelector = document.querySelector(".custom-select");
 
 function dbCallback(snapshot) {
   snapshot.docs.forEach((doc) => preset.push({
@@ -31,24 +34,23 @@ function dbCallback(snapshot) {
     ...doc.data(),
   }));
   console.log(preset)
-
-}
-numeroPreset = preset.length
-
+  while (q<preset.length) {
+    var opt = document.createElement("option");
+    opt.setAttribute("value",q);
+    opt.innerHTML= preset[q].Name;
+    options.push(opt);
+    q=q+1;
+  }
+  for (var i=0; i<preset.length;i++) {
+    DropDownSelector.firstElementChild.add(options[i]);
+  }
+  
+}   
+numeroPreset = preset.length;
 window.preset = preset;
 window.numeroPreset = numeroPreset;
+window.options=options;
 
-let options = [];
-
-// function creaOpzioni() {
-//   for (var i = 0; i <= preset.length; i++) {
-//     options.push(document.createElement("option"));
-//     console.log(preset.map(p=>p.value))
-//     options[i].setAttribute("value",i);
-//     options[i].innerHTML(window.preset[i].Name);
-//   }
-// }
-// creaOpzioni()
 
 function upload() {
   let NewPreset = {};
