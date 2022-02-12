@@ -46,18 +46,39 @@ function dbCallback(snapshot) {
   }
   
 }   
-numeroPreset = preset.length;
 window.preset = preset;
-window.numeroPreset = numeroPreset;
 window.options=options;
+window.DropDownSelector=DropDownSelector;
+var IDDropDownSelector = document.getElementById("menuTendina");
+window.IDDropDownSelector = IDDropDownSelector;
+
+var choosenValue;
+window.choosenValue=choosenValue;
+function valoreSelezionato() {
+  console.log('You selected: ', DropDownSelector.firstElementChild.value);
+  DropDownSelector.firstElementChild.value;
+  document.querySelector("#attackRange").value = preset[DropDownSelector.firstElementChild.value].Attack;
+  document.querySelector("#decayRange").value = preset[DropDownSelector.firstElementChild.value].Decay;
+  document.querySelector("#sustainRange").value = preset[DropDownSelector.firstElementChild.value].Sustain;
+  document.querySelector("#releaseRange").value = preset[DropDownSelector.firstElementChild.value].Release;
+  document.querySelector("#gainRange").value = preset[DropDownSelector.firstElementChild.value].Gain;
+  document.querySelector("#LOWFilter").value = preset[DropDownSelector.firstElementChild.value].LowPass;
+  document.querySelector("#HIGHFilter").value = preset[DropDownSelector.firstElementChild.value].HighPass;
+  document.querySelector("#TimeOfDelay").value = preset[DropDownSelector.firstElementChild.value].EchoDelay;
+  document.querySelector("#GainOfDelay").value = preset[DropDownSelector.firstElementChild.value].EchoGain;
+  document.querySelector("#deltaSlider").value = preset[DropDownSelector.firstElementChild.value].FreqDifference;
+}
+
+
+IDDropDownSelector.addEventListener("change", valoreSelezionato)
 
 
 function upload() {
   let NewPreset = {};
   NewPreset.Name = NamePreset;
   NewPreset.Attack = document.querySelector("#attackRange").value;
-  NewPreset.Sustain = document.querySelector("#decayRange").value;
-  NewPreset.Decay = document.querySelector("#sustainRange").value;
+  NewPreset.Decay = document.querySelector("#decayRange").value;
+  NewPreset.Sustain = document.querySelector("#sustainRange").value;
   NewPreset.Release = document.querySelector("#releaseRange").value;
   NewPreset.Gain = document.querySelector("#gainRange").value;
   NewPreset.LowPass = document.querySelector("#LOWFilter").value;
@@ -65,6 +86,7 @@ function upload() {
   NewPreset.EchoDelay = document.querySelector("#TimeOfDelay").value;
   NewPreset.EchoGain = document.querySelector("#GainOfDelay").value;
   NewPreset.FreqDifference = document.querySelector("#deltaSlider").value;
+  NewPreset.WaveType = 
   db.collection("presets").add(NewPreset)
     .then(function (docRef) {
       docRef.get().then(function (snap) {
@@ -273,7 +295,7 @@ var bindex = 0;
 
 
 var pn, mss;
-var recording = true;
+var recording = false;
 async function main() {
   var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
   var mss = c.createMediaStreamSource(stream);
@@ -379,7 +401,7 @@ var clickedKey;
 function StartSuspendRec() {
   recording = !recording;
   clickedKey = event.target;
-  clickedKey.classList.toggle("NonActiveRec");
+  clickedKey.classList.toggle("ActiveRec");
 };
 
 startrec.addEventListener("click", StartSuspendRec)
@@ -491,6 +513,13 @@ document.querySelector(".test").onclick = function () {
   playSlice(sliceStart, sliceEnd, 1)
 };
 
+//function that allows you to clear the buffer
+document.querySelector(".clear").onclick = function () {
+    var recordBufferData = recordBuffer.getChannelData(0);
+    for (var i = 0; i < recording_length * c.sampleRate; i++) {
+      recordBufferData[i] = 0;
+    }
+}
 
 //TASTIERA*******************************************************
 let ac = new AudioContext();
@@ -670,9 +699,9 @@ function stopNote(nFreq, isOnFlag) {
   gains[nFreq].gain.setValueAtTime(adsrEnv.gain * adsrEnv.sustain * (0.5 / (3 * oscillatorsON)), now);
   gains[nFreq].gain.linearRampToValueAtTime(0, now + adsrEnv.release);
   oscillatorsON = oscillatorsON - 1;
-  oscillators[nFreq].stop(now + adsrEnv.release + 0.05);
-  oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.05);
-  oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.05);
+  oscillators[nFreq].stop(now + adsrEnv.release+ 0.001);
+  oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.003);
+  oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.005);
   gains[nFreq].disconnect(a)
 
   var colorCode =
