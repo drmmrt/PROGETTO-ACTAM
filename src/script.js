@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { firebase } from '@firebase/app';
+import { firebase } from "@firebase/app";
 import "firebase/firestore";
-import 'regenerator-runtime/runtime';
+import "regenerator-runtime/runtime";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -14,7 +14,7 @@ const firebaseConfig = {
   projectId: "progetto-actam",
   storageBucket: "progetto-actam.appspot.com",
   messagingSenderId: "934505841889",
-  appId: "1:934505841889:web:49c57ffed9d1f0f5ad23a0"
+  appId: "1:934505841889:web:49c57ffed9d1f0f5ad23a0",
 };
 
 var numeroPreset = 0;
@@ -29,49 +29,58 @@ db.collection("presets").onSnapshot(dbCallback);
 var DropDownSelector = document.querySelector(".custom-select");
 
 function dbCallback(snapshot) {
-  snapshot.docs.forEach((doc) => preset.push({
-    id: doc.id,
-    ...doc.data(),
-  }));
-  console.log(preset)
-  while (q<preset.length) {
+  snapshot.docs.forEach((doc) =>
+    preset.push({
+      id: doc.id,
+      ...doc.data(),
+    })
+  );
+  console.log(preset);
+  while (q < preset.length) {
     var opt = document.createElement("option");
-    opt.setAttribute("value",q);
-    opt.innerHTML= preset[q].Name;
+    opt.setAttribute("value", q);
+    opt.innerHTML = preset[q].Name;
     options.push(opt);
-    q=q+1;
+    q = q + 1;
   }
-  for (var i=0; i<preset.length;i++) {
+  for (var i = 0; i < preset.length; i++) {
     DropDownSelector.firstElementChild.add(options[i]);
   }
-  
-}   
+}
 window.preset = preset;
-window.options=options;
-window.DropDownSelector=DropDownSelector;
+window.options = options;
+window.DropDownSelector = DropDownSelector;
 var IDDropDownSelector = document.getElementById("menuTendina");
 window.IDDropDownSelector = IDDropDownSelector;
 
 var choosenValue;
-window.choosenValue=choosenValue;
+window.choosenValue = choosenValue;
 function valoreSelezionato() {
-  console.log('You selected: ', DropDownSelector.firstElementChild.value);
+  console.log("You selected: ", DropDownSelector.firstElementChild.value);
   DropDownSelector.firstElementChild.value;
-  document.querySelector("#attackRange").value = preset[DropDownSelector.firstElementChild.value].Attack;
-  document.querySelector("#decayRange").value = preset[DropDownSelector.firstElementChild.value].Decay;
-  document.querySelector("#sustainRange").value = preset[DropDownSelector.firstElementChild.value].Sustain;
-  document.querySelector("#releaseRange").value = preset[DropDownSelector.firstElementChild.value].Release;
-  document.querySelector("#gainRange").value = preset[DropDownSelector.firstElementChild.value].Gain;
-  document.querySelector("#LOWFilter").value = preset[DropDownSelector.firstElementChild.value].LowPass;
-  document.querySelector("#HIGHFilter").value = preset[DropDownSelector.firstElementChild.value].HighPass;
-  document.querySelector("#TimeOfDelay").value = preset[DropDownSelector.firstElementChild.value].EchoDelay;
-  document.querySelector("#GainOfDelay").value = preset[DropDownSelector.firstElementChild.value].EchoGain;
-  document.querySelector("#deltaSlider").value = preset[DropDownSelector.firstElementChild.value].FreqDifference;
+  document.querySelector("#attackRange").value =
+    preset[DropDownSelector.firstElementChild.value].Attack;
+  document.querySelector("#decayRange").value =
+    preset[DropDownSelector.firstElementChild.value].Decay;
+  document.querySelector("#sustainRange").value =
+    preset[DropDownSelector.firstElementChild.value].Sustain;
+  document.querySelector("#releaseRange").value =
+    preset[DropDownSelector.firstElementChild.value].Release;
+  document.querySelector("#gainRange").value =
+    preset[DropDownSelector.firstElementChild.value].Gain;
+  document.querySelector("#LOWFilter").value =
+    preset[DropDownSelector.firstElementChild.value].LowPass;
+  document.querySelector("#HIGHFilter").value =
+    preset[DropDownSelector.firstElementChild.value].HighPass;
+  document.querySelector("#TimeOfDelay").value =
+    preset[DropDownSelector.firstElementChild.value].EchoDelay;
+  document.querySelector("#GainOfDelay").value =
+    preset[DropDownSelector.firstElementChild.value].EchoGain;
+  document.querySelector("#deltaSlider").value =
+    preset[DropDownSelector.firstElementChild.value].FreqDifference;
 }
 
-
-IDDropDownSelector.addEventListener("change", valoreSelezionato)
-
+IDDropDownSelector.addEventListener("change", valoreSelezionato);
 
 function upload() {
   let NewPreset = {};
@@ -86,25 +95,23 @@ function upload() {
   NewPreset.EchoDelay = document.querySelector("#TimeOfDelay").value;
   NewPreset.EchoGain = document.querySelector("#GainOfDelay").value;
   NewPreset.FreqDifference = document.querySelector("#deltaSlider").value;
-  NewPreset.WaveType = 
-  db.collection("presets").add(NewPreset)
+  NewPreset.WaveType = db
+    .collection("presets")
+    .add(NewPreset)
     .then(function (docRef) {
       docRef.get().then(function (snap) {
         /*app.selectedState.id = snap.id
         app.saveState(snap.id)
         app.selectedState.name = snap.data().name
         app.selectedState.rings = snap.data().rings*/
-      })
+      });
     })
     .catch(function () {
-      alert("Internal error: can't upload state to database")
+      alert("Internal error: can't upload state to database");
     });
 }
 
 window.upload = upload;
-
-
-
 
 //TALKBOX***************************************************************************
 //knob controlled variables that allow you to select a certain section of the voice buffer
@@ -115,21 +122,20 @@ var rndgrainStart;
 var rndgrainEnd;
 var Startrnd;
 var Endrnd;
-var speedRnd = 100;   //initial value of the slider that allows you to decide at which speed the random function will be called
+var speedRnd = 100; //initial value of the slider that allows you to decide at which speed the random function will be called
 
 var selezionaSpeed = document.querySelector("#speedSlider");
 
-selezionaSpeed.addEventListener("change", displayTempo)
+selezionaSpeed.addEventListener("change", displayTempo);
 
-//function used to update the speed, displayed in the #randomVelocity screen, when the slider SLDTalkbox is moved around 
+//function used to update the speed, displayed in the #randomVelocity screen, when the slider SLDTalkbox is moved around
 function displayTempo() {
-  speedRnd = selezionaSpeed.value
+  speedRnd = selezionaSpeed.value;
   document.getElementById("speed").innerHTML = speedRnd * 0.001 + "s";
   setTimeout(displayTempo, 100);
 }
 
 displayTempo();
-
 
 var canvasElementTalkbox = document.querySelector("#canvasRecorder");
 const ctxTalkbox = canvasElementTalkbox.getContext("2d");
@@ -293,7 +299,6 @@ var recordBuffer = c.createBuffer(
 
 var bindex = 0;
 
-
 var pn, mss;
 var recording = false;
 async function main() {
@@ -329,7 +334,10 @@ function drawBuffer() {
   dataIn = recordBuffer.getChannelData(0);
   step = recordBuffer.length / canvasRecorder.width;
   for (var i = 0; i < canvasRecorder.width; i++) {
-    ctxTalkbox.lineTo(i, canvasRecorder.height / 2 + 400 * dataIn[Math.round(i * step)]);
+    ctxTalkbox.lineTo(
+      i,
+      canvasRecorder.height / 2 + 400 * dataIn[Math.round(i * step)]
+    );
   }
 
   markPosition = Math.round((bindex % recordBuffer.length) / step);
@@ -363,7 +371,10 @@ function drawBuffer() {
   ctxTalkbox.strokeStyle = "#FFA500";
   ctxTalkbox.beginPath();
   ctxTalkbox.moveTo(canvasRecorder.width * rndgrainStart, 0);
-  ctxTalkbox.lineTo(canvasRecorder.width * rndgrainStart, canvasRecorder.height);
+  ctxTalkbox.lineTo(
+    canvasRecorder.width * rndgrainStart,
+    canvasRecorder.height
+  );
   ctxTalkbox.moveTo(canvasRecorder.width * rndgrainEnd, 0);
   ctxTalkbox.lineTo(canvasRecorder.width * rndgrainEnd, canvasRecorder.height);
   ctxTalkbox.stroke();
@@ -402,9 +413,9 @@ function StartSuspendRec() {
   recording = !recording;
   clickedKey = event.target;
   clickedKey.classList.toggle("ActiveRec");
-};
+}
 
-startrec.addEventListener("click", StartSuspendRec)
+startrec.addEventListener("click", StartSuspendRec);
 
 var IO = document.getElementById("accensione");
 
@@ -413,12 +424,11 @@ function ONOFF() {
 
   if (ciao == true) {
     c.resume();
-  }
-  else {
+  } else {
     c.suspend();
   }
 
-  return ciao
+  return ciao;
 }
 
 IO.addEventListener("click", ONOFF);
@@ -453,8 +463,7 @@ function updateRandom() {
 function setIntervalX(callback, delay, repetitions) {
   var x = 0;
   var intervalID = window.setInterval(function () {
-
-    playSlice(rndgrainStart, rndgrainEnd, 1)
+    playSlice(rndgrainStart, rndgrainEnd, 1);
 
     if (++x === repetitions) {
       window.clearInterval(intervalID);
@@ -467,15 +476,22 @@ function PlayRandom() {
   var diff = rndgrainEnd - rndgrainStart;
   //when the duration of the selected slice of buffer is greater then the speed of the random update, the function only plays a part of the selected slice that has the same time duration as the speed od the random update
   if (diff * 10 > speedRnd * 0.001) {
-    var rndgrainEndNew = rndgrainStart + (speedRnd * 0.0001);
-    playSlice(rndgrainStart, rndgrainEndNew, 1)
+    var rndgrainEndNew = rndgrainStart + speedRnd * 0.0001;
+    playSlice(rndgrainStart, rndgrainEndNew, 1);
   }
   //when the duration of the selected slice of buffer is less greater then the speed of the random update, the function plays the selected slice of buffer DecNumber+IntNumer of times
   else {
-    var IntNumber = Math.trunc((speedRnd / 1000) / (diff * 10));    //parte intera
-    var DecNumber = ((speedRnd / 1000) / (diff * 10)) - IntNumber;  //parte decimale
-    setIntervalX(playSlice(rndgrainStart, rndgrainEnd, 1), (rndgrainEnd - rndgrainStart) * 10000, IntNumber);
-    setTimeout(playSlice(rndgrainStart, rndgrainStart + (DecNumber / 10), 1), (rndgrainEnd - rndgrainStart) * 10000 * IntNumber)
+    var IntNumber = Math.trunc(speedRnd / 1000 / (diff * 10)); //parte intera
+    var DecNumber = speedRnd / 1000 / (diff * 10) - IntNumber; //parte decimale
+    setIntervalX(
+      playSlice(rndgrainStart, rndgrainEnd, 1),
+      (rndgrainEnd - rndgrainStart) * 10000,
+      IntNumber
+    );
+    setTimeout(
+      playSlice(rndgrainStart, rndgrainStart + DecNumber / 10, 1),
+      (rndgrainEnd - rndgrainStart) * 10000 * IntNumber
+    );
   }
 }
 
@@ -483,12 +499,13 @@ var randomButton = document.querySelector("#random");
 
 //function that changes the value of the rnd button when clicked
 function activeOrNot() {
-  if (document.querySelector(".rnd").value == "false") { activateRnd(); }
-  else { deactivateRnd() }
+  if (document.querySelector(".rnd").value == "false") {
+    activateRnd();
+  } else {
+    deactivateRnd();
+  }
 }
-
 randomButton.addEventListener("click", activeOrNot);
-
 
 //variables used to keep track of what intervals we're creating, in order to be able to clear them
 var rndInterval = 0;
@@ -508,18 +525,52 @@ function deactivateRnd() {
   clearInterval(rndInterval2);
 }
 
+//function that changes the value of the loop button when clicked
+var BottoneLoop = document.querySelector(".loop");
+function LoopOrNot() {
+  if (document.querySelector(".loop").value == "false") {
+    activateLoop();
+  } else {
+    deactivateLoop();
+  }
+}
+
+//functions that allow you to activate or deactivate the loop
+let LoopInterval;
+let loop = document.querySelector(".loop");
+
+BottoneLoop.addEventListener("click", LoopOrNot);
+function activateLoop() {
+  document.querySelector(".loop").value = "true";
+  LoopInterval = setInterval(function () {
+    playSlice(sliceStart, sliceEnd, 1);
+  }, (sliceEnd - sliceStart) * 10000);
+  loop.classList.toggle("button-clicked");
+  loop.firstElementChild.classList.toggle("icon-clicked");
+}
+
+function deactivateLoop() {
+  document.querySelector(".loop").value = "false";
+  clearInterval(LoopInterval);
+  loop.classList.toggle("button-clicked");
+  loop.firstElementChild.classList.toggle("icon-clicked");
+}
+
+window.loop = loop;
+window.LoopInterval = LoopInterval;
+
 //function used to play the selected buffer's slice when the TEST button is clicked
 document.querySelector(".test").onclick = function () {
-  playSlice(sliceStart, sliceEnd, 1)
+  playSlice(sliceStart, sliceEnd, 1);
 };
 
 //function that allows you to clear the buffer
 document.querySelector(".clear").onclick = function () {
-    var recordBufferData = recordBuffer.getChannelData(0);
-    for (var i = 0; i < recording_length * c.sampleRate; i++) {
-      recordBufferData[i] = 0;
-    }
-}
+  var recordBufferData = recordBuffer.getChannelData(0);
+  for (var i = 0; i < recording_length * c.sampleRate; i++) {
+    recordBufferData[i] = 0;
+  }
+};
 
 //TASTIERA*******************************************************
 let ac = new AudioContext();
@@ -534,7 +585,7 @@ let adsrEnv = {
   decay: 0,
   sustain: 1,
   release: 0.5,
-  gain: 1
+  gain: 1,
 };
 
 let total;
@@ -558,13 +609,17 @@ document.onkeydown = (e) => {
   }
   if (e.repeat) return;
 
-  var selezioneInput = document.getElementById("selezioneInput").checked == true;
+  var selezioneInput =
+    document.getElementById("selezioneInput").checked == true;
 
   if (selezioneInput == true) {
     playNote(keys.indexOf(e.key), isOn);
-  }
-  else {
-    playSlice(sliceStart, sliceEnd, Math.pow(2, n) * Math.pow(2, keys.indexOf(e.key) / 12));
+  } else {
+    playSlice(
+      sliceStart,
+      sliceEnd,
+      Math.pow(2, n) * Math.pow(2, keys.indexOf(e.key) / 12)
+    );
   }
   // console.log(parseInt(window.getComputedStyle(document.querySelector(`.${e.key}`)).backgroundColor.split(', ')[1])-50)
 };
@@ -574,13 +629,11 @@ document.onkeyup = (e) => {
   stopNote(keys.indexOf(e.key), isOn);
 };
 
-
 var LOWfilterSliderFreq = 0.5;
 var HIGHfilterSliderFreq = 0.001;
 var TimeDelay = 0;
 var GainDelay = 0;
 var freqDiff = 0;
-
 
 function playNote(nFreq, isOnFlag) {
   if (!isOnFlag) return;
@@ -621,18 +674,18 @@ function playNote(nFreq, isOnFlag) {
 
   //ECHO or DELAY
   const echo = {
-    maxDuration: 1
-  }
+    maxDuration: 1,
+  };
 
   const delayNode = ac.createDelay();
   delayNode.delayTime.value = TimeDelay * echo.maxDuration;
-  delayNode.connect(ac.destination)
+  delayNode.connect(ac.destination);
 
   const gainEcho = ac.createGain();
   gainEcho.gain.value = GainDelay;
 
-
-  gains[nFreq].connect(a)
+  //All the connections needed for the filters and echo to work
+  gains[nFreq].connect(a);
   gains[nFreq].connect(LOWfilter);
   gains[nFreq].connect(HIGHfilter);
   LOWfilter.connect(ac.destination);
@@ -641,14 +694,20 @@ function playNote(nFreq, isOnFlag) {
   delayNode.connect(gainEcho);
   gainEcho.connect(delayNode);
   gains[nFreq].gain.setValueAtTime(0, now);
-  gains[nFreq].gain.linearRampToValueAtTime(adsrEnv.gain * 0.5 / (3 * oscillatorsON), now + adsrEnv.attack);
+  gains[nFreq].gain.linearRampToValueAtTime(
+    (adsrEnv.gain * 0.5) / (3 * oscillatorsON),
+    now + adsrEnv.attack
+  );
   gains[nFreq].gain.linearRampToValueAtTime(
     adsrEnv.gain * adsrEnv.sustain * (0.5 / (3 * oscillatorsON)),
     now + adsrEnv.attack + adsrEnv.decay
   );
-  oscillators[nFreq].frequency.value = Math.pow(2, n) * 220 * Math.pow(2, nFreq / 12);
-  oscillatorsPlusDelta[nFreq].frequency.value = Math.pow(2, n) * 220 * Math.pow(2, nFreq / 12) + delta;
-  oscillatorsMinusDelta[nFreq].frequency.value = Math.pow(2, n) * 220 * Math.pow(2, nFreq / 12) - delta;
+  oscillators[nFreq].frequency.value =
+    Math.pow(2, n) * 220 * Math.pow(2, nFreq / 12);
+  oscillatorsPlusDelta[nFreq].frequency.value =
+    Math.pow(2, n) * 220 * Math.pow(2, nFreq / 12) + delta;
+  oscillatorsMinusDelta[nFreq].frequency.value =
+    Math.pow(2, n) * 220 * Math.pow(2, nFreq / 12) - delta;
   oscillators[nFreq].start(ac.currentTime);
   oscillatorsPlusDelta[nFreq].start(ac.currentTime + 0.005);
   oscillatorsMinusDelta[nFreq].start(ac.currentTime + 0.003);
@@ -668,14 +727,13 @@ function playNote(nFreq, isOnFlag) {
       "background-color",
       `rgb(${colorCode},${colorCode},${colorCode})`
     );
-};
-
+}
 
 var delaystime = document.querySelector("#TimeOfDelay");
 var delaysgain = document.querySelector("#GainOfDelay");
 
-TimeOfDelay.addEventListener("change", SETTADELAY)
-GainOfDelay.addEventListener("change", SETTADELAY)
+TimeOfDelay.addEventListener("change", SETTADELAY);
+GainOfDelay.addEventListener("change", SETTADELAY);
 
 function SETTADELAY() {
   TimeDelay = delaystime.value;
@@ -685,8 +743,8 @@ function SETTADELAY() {
 var passabasso = document.querySelector("#LOWFilter");
 var passaalto = document.querySelector("#HIGHFilter");
 
-TimeOfDelay.addEventListener("change", SETTAFILTRI)
-GainOfDelay.addEventListener("change", SETTAFILTRI)
+TimeOfDelay.addEventListener("change", SETTAFILTRI);
+GainOfDelay.addEventListener("change", SETTAFILTRI);
 
 function SETTAFILTRI() {
   LOWfilterSliderFreq = passaalto.value;
@@ -696,13 +754,16 @@ function SETTAFILTRI() {
 function stopNote(nFreq, isOnFlag) {
   if (!isOnFlag) return;
   const now = ac.currentTime;
-  gains[nFreq].gain.setValueAtTime(adsrEnv.gain * adsrEnv.sustain * (0.5 / (3 * oscillatorsON)), now);
+  gains[nFreq].gain.setValueAtTime(
+    adsrEnv.gain * adsrEnv.sustain * (0.5 / (3 * oscillatorsON)),
+    now
+  );
   gains[nFreq].gain.linearRampToValueAtTime(0, now + adsrEnv.release);
   oscillatorsON = oscillatorsON - 1;
-  oscillators[nFreq].stop(now + adsrEnv.release+ 0.001);
+  oscillators[nFreq].stop(now + adsrEnv.release + 0.001);
   oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.003);
   oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.005);
-  gains[nFreq].disconnect(a)
+  gains[nFreq].disconnect(a);
 
   var colorCode =
     parseInt(
@@ -717,7 +778,7 @@ function stopNote(nFreq, isOnFlag) {
       "background-color",
       `rgb(${colorCode},${colorCode},${colorCode})`
     );
-};
+}
 
 //contare elementi b e w
 var k = 1; //variabile per distinguere b/n nel ciclo for
@@ -746,8 +807,9 @@ for (var i = 1; i <= keys.length; i++) {
   key.classList.add(`${keys.split("")[i - 1]}`);
   if (j === 2 || j === 4 || j === 7 || j === 9 || j === 11) {
     //tasti black
-    const style = `width: ${100 / 3 / countb}%; left: ${((100 / 3) * (3 / 2)) / countb + (fromLeftBlack * 100) / countw
-      }%;`;
+    const style = `width: ${100 / 3 / countb}%; left: ${
+      ((100 / 3) * (3 / 2)) / countb + (fromLeftBlack * 100) / countw
+    }%;`;
     key.classList.add("black");
     key.style = style;
     if (j === 4 || j === 11) {
@@ -756,8 +818,9 @@ for (var i = 1; i <= keys.length; i++) {
     fromLeftBlack++;
   } else {
     //tasti white
-    const style = `width: ${100 / countw}%; left: ${(fromLeftWhite * 100) / countw
-      }%;`;
+    const style = `width: ${100 / countw}%; left: ${
+      (fromLeftWhite * 100) / countw
+    }%;`;
     key.classList.add("white");
     key.style = style;
     fromLeftWhite++;
@@ -772,50 +835,59 @@ for (var i = 1; i <= keys.length; i++) {
 
 function setSwitcher(value) {
   isOn = value;
-  document.querySelector("#turnoff-button").style = `background-color: ${isOn ? "#7fc846" : "#760f00"
-    }`;
-};
+  document.querySelector("#turnoff-button").style = `background-color: ${
+    isOn ? "#7fc846" : "#760f00"
+  }`;
+}
 
 document
   .querySelector("#turnoff-button")
-  .addEventListener("click", ()=>setSwitcher(!isOn));
+  .addEventListener("click", () => setSwitcher(!isOn));
 
-document.querySelector("#turnoff-button").style = `background-color: ${isOn ? "#7fc846" : "#760f00"
-  }`;
+document.querySelector("#turnoff-button").style = `background-color: ${
+  isOn ? "#7fc846" : "#760f00"
+}`;
 
 // funzione che imposta il bottone ricevuto in input come 'active'
 function setActive(string) {
   document.querySelector(".waveform.active").classList.remove("active");
   document.querySelector(`.${string}`).classList.add("active");
-};
+}
 
 // si crea una funzione setActive per ogni pulsante e la si conserva in un array
 // si assegnano ai bottoni le funzioni contenute nell'array
 
-document.querySelector('.sine').addEventListener("click", () => setActive('sine'))
-document.querySelector('.square').addEventListener("click", () => setActive('square'))
-document.querySelector('.triangle').addEventListener("click", () => setActive('triangle'))
-document.querySelector('.sawtooth').addEventListener("click", () => setActive('sawtooth'))
+document
+  .querySelector(".sine")
+  .addEventListener("click", () => setActive("sine"));
+document
+  .querySelector(".square")
+  .addEventListener("click", () => setActive("square"));
+document
+  .querySelector(".triangle")
+  .addEventListener("click", () => setActive("triangle"));
+document
+  .querySelector(".sawtooth")
+  .addEventListener("click", () => setActive("sawtooth"));
 
 //VISUALIZZATORE
 
 // set up canvas context for visualizer
 
-var canvasElement = document.querySelector("canvas")
+var canvasElement = document.querySelector("canvas");
 
-const ctx = canvasElement.getContext("2d")
+const ctx = canvasElement.getContext("2d");
 
-ctx.moveTo(0, 0)
-ctx.lineTo(100, 100)
+ctx.moveTo(0, 0);
+ctx.lineTo(100, 100);
 
+const a = ac.createAnalyser();
 
-const a = ac.createAnalyser()
+var data = new Float32Array(1024);
 
-var data = new Float32Array(1024)
+a.getFloatTimeDomainData(data);
 
-a.getFloatTimeDomainData(data)
-
-console.log(data)
+console.log(data);
 
 function draw1() {
   a.getFloatTimeDomainData(data);
@@ -826,14 +898,13 @@ function draw1() {
   ctx.moveTo(0, h / 2);
 
   for (var i = 0; i < 1024; i++) {
-    ctx.lineTo(i, h / 2 + data[i] * h / 2)
+    ctx.lineTo(i, h / 2 + (data[i] * h) / 2);
   }
 
-  ctx.stroke()
+  ctx.stroke();
 }
 
-setInterval(draw1, 60)
-
+setInterval(draw1, 60);
 
 // INVILUPPI
 document.querySelector("#attack").innerHTML = adsrEnv.attack;
@@ -856,7 +927,10 @@ function draw() {
   // Attack
   adsrCtx.beginPath();
   adsrCtx.moveTo(60, 250);
-  adsrCtx.lineTo((adsrEnv.attack / total) * 300 + current, 50 + 200 * (1 - adsrEnv.gain));
+  adsrCtx.lineTo(
+    (adsrEnv.attack / total) * 300 + current,
+    50 + 200 * (1 - adsrEnv.gain)
+  );
   current += (adsrEnv.attack / total) * 300;
 
   // Decay
@@ -884,28 +958,31 @@ function draw() {
 
 draw();
 
-
 //mousemove functions
-document.querySelector("#attackRange").addEventListener('mousemove', () => {
-  adsrEnv.attack = Math.floor(document.querySelector("#attackRange").value * 100) / 100;
+document.querySelector("#attackRange").addEventListener("mousemove", () => {
+  adsrEnv.attack =
+    Math.floor(document.querySelector("#attackRange").value * 100) / 100;
   draw();
   document.querySelector("#attack").innerHTML = adsrEnv.attack;
-})
+});
 
 document.querySelector("#sustainRange").addEventListener("mousemove", () => {
-  adsrEnv.sustain = Math.floor(document.querySelector("#sustainRange").value * 100) / 100;
+  adsrEnv.sustain =
+    Math.floor(document.querySelector("#sustainRange").value * 100) / 100;
   draw();
   document.querySelector("#sustain").innerHTML = adsrEnv.sustain;
 });
 
 document.querySelector("#decayRange").addEventListener("mousemove", () => {
-  adsrEnv.decay = Math.floor(document.querySelector("#decayRange").value * 100) / 100;
+  adsrEnv.decay =
+    Math.floor(document.querySelector("#decayRange").value * 100) / 100;
   draw();
   document.querySelector("#decay").innerHTML = adsrEnv.decay;
 });
 
 document.querySelector("#releaseRange").addEventListener("mousemove", () => {
-  adsrEnv.release = Math.floor(document.querySelector("#releaseRange").value * 100) / 100;
+  adsrEnv.release =
+    Math.floor(document.querySelector("#releaseRange").value * 100) / 100;
   draw();
   document.querySelector("#release").innerHTML = adsrEnv.release;
 });
@@ -917,12 +994,12 @@ document.querySelector("#deltaSlider").addEventListener("mousemove", () => {
 });
 
 document.querySelector("#gainRange").addEventListener("mousemove", () => {
-  adsrEnv.gain = Math.floor(document.querySelector("#gainRange").value * 100) / 100;
+  adsrEnv.gain =
+    Math.floor(document.querySelector("#gainRange").value * 100) / 100;
   console.log(adsrEnv.gain);
   draw();
   document.querySelector("#gain").innerHTML = adsrEnv.gain;
 });
-
 
 function plusPitch() {
   n = n + 1;
@@ -934,12 +1011,11 @@ function minusPitch() {
 var PLUS = document.getElementById("+");
 var MINUS = document.getElementById("-");
 
-PLUS.addEventListener("click", plusPitch)
-MINUS.addEventListener("click", minusPitch)
+PLUS.addEventListener("click", plusPitch);
+MINUS.addEventListener("click", minusPitch);
 
-
-var SAVEPreset = document.getElementById("save")
-SAVEPreset.addEventListener("click", SaveButtonClicked)
+var SAVEPreset = document.getElementById("save");
+SAVEPreset.addEventListener("click", SaveButtonClicked);
 
 var NamePreset = new String("");
 
