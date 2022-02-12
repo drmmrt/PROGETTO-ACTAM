@@ -68,7 +68,7 @@ All these function are implemented with some sliders.
 There is also a window on the left where you can select some presets for the envelopes and  the effects. For this last feature 
 
 
-## Peculiar functions 
+## Some peculiar functions 
 
 ### Random
 
@@ -82,13 +82,45 @@ In order to update the random sections, we implemented the updateRandom function
 ![image](https://user-images.githubusercontent.com/99413338/153580200-3d2fbe34-a256-488b-a466-9f7765dd07e6.png)
 
 ### playNote
+
+This function assigns 3 oscillator to each note. With this arrrangement a superposition of 3 oscillators is implemented, where the central takes the frequency from nFreq and is matched with the other two, which are positively/negatively shifted in frequency by a delta value w.r.t the central one. 
+
+Moreover it defines the low-pass/hi-pass filters and the echo with all their parameters. All of them are after connected to a gain, which is linked with the Envelope parameters.
+
 ![playnote](https://user-images.githubusercontent.com/82934687/153707871-a9445e68-474f-48e6-93a2-3dba8dbf4867.png)
 ![playnote1](https://user-images.githubusercontent.com/82934687/153707881-0897e309-3817-4fd9-8842-5368021dd0d3.png)
 ![platnote2](https://user-images.githubusercontent.com/82934687/153707892-1a1b99a7-f197-4df8-bd39-cdc650e78d56.png)
 
 
 ### stopNote
+
+This function basically set the time values of when the gain needs to be active using a setValue for the amplitude behaviour and a linearRamp to establish the time starting point (currentTime) and the ending point ('release' from the envelope).
+
+Furthermore a 'stop' is imposed for the 3 oscillators giving as time duration the same release value as before. A little time shift is added on each oscillator to avoid "click" sound when the sound stops. (?)
 ![stopnote](https://user-images.githubusercontent.com/82934687/153707901-22833387-4683-4df2-8986-ac3c5c741c3a.png)
 
 
 # Firebase Part
+
+We thaught that the possibility to safe a proper set of values by the user could be a very useful feature. In order to to that we used the serverless platform Firebase as a database where to put the list of values of the settings choosen by the user.
+
+![firebase1](https://user-images.githubusercontent.com/82934687/153708750-0495ba47-0cf3-4bd2-8588-3638cb8c02fb.png)
+
+This function allows you through a dropdown window to select the proper preset of values that you want to use. A simple pop-up reminds you to the firebase folder where you can complete the personalization. 
+
+![firebase2](https://user-images.githubusercontent.com/82934687/153708759-d2558912-2726-4ba8-9aeb-6706c1d1a230.png)
+
+This function has the task to upload and save the set of choosen values of all the features in the firebase database. 
+
+
+
+
+
+# Group Components
+
+- Umberto Derme
+- Riccardo Di Palma
+- Jacopo Caucig
+
+
+
