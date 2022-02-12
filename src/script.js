@@ -100,10 +100,6 @@ function upload() {
     .add(NewPreset)
     .then(function (docRef) {
       docRef.get().then(function (snap) {
-        /*app.selectedState.id = snap.id
-        app.saveState(snap.id)
-        app.selectedState.name = snap.data().name
-        app.selectedState.rings = snap.data().rings*/
       });
     })
     .catch(function () {
