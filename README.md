@@ -91,3 +91,4 @@ In order to update the random sections, we implemented the updateRandom function
 ![stopnote](https://user-images.githubusercontent.com/82934687/153707901-22833387-4683-4df2-8986-ac3c5c741c3a.png)
 
 
+#Firebase Part
