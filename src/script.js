@@ -630,6 +630,9 @@ var HIGHfilterSliderFreq = 0.001;
 var TimeDelay = 0;
 var GainDelay = 0;
 var freqDiff = 0;
+let LOWfilter;
+let HIGHfilter;
+
 
 function playNote(nFreq, isOnFlag) {
   if (!isOnFlag) return;
@@ -659,12 +662,12 @@ function playNote(nFreq, isOnFlag) {
   const maxFilterFreq = ac.sampleRate / 2;
 
   //LOW-PASS FILTER
-  const LOWfilter = ac.createBiquadFilter();
+  LOWfilter = ac.createBiquadFilter();
   LOWfilter.type = "lowpass";
   LOWfilter.frequency.value = LOWfilterSliderFreq * maxFilterFreq;
 
   //HIGH-PASS FILTER
-  const HIGHfilter = ac.createBiquadFilter();
+  HIGHfilter = ac.createBiquadFilter();
   HIGHfilter.type = "lowpass";
   HIGHfilter.frequency.value = HIGHfilterSliderFreq * maxFilterFreq;
 
@@ -689,6 +692,7 @@ function playNote(nFreq, isOnFlag) {
   gains[nFreq].connect(delayNode);
   delayNode.connect(gainEcho);
   gainEcho.connect(delayNode);
+
   gains[nFreq].gain.setValueAtTime(0, now);
   gains[nFreq].gain.linearRampToValueAtTime(
     (adsrEnv.gain * 0.5) / (3 * oscillatorsON),
@@ -739,11 +743,11 @@ function SETTADELAY() {
 var passabasso = document.querySelector("#LOWFilter");
 var passaalto = document.querySelector("#HIGHFilter");
 
-TimeOfDelay.addEventListener("change", SETTAFILTRI);
-GainOfDelay.addEventListener("change", SETTAFILTRI);
+LOWFilter.addEventListener("change", SETTAFILTRI);
+HIGHFilter.addEventListener("change", SETTAFILTRI);
 
 function SETTAFILTRI() {
-  LOWfilterSliderFreq = passaalto.value;
+  LOWfilterSliderFreq = passabasso.value;
   HIGHfilterSliderFreq = passaalto.value;
 }
 
