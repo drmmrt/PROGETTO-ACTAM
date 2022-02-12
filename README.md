@@ -5,14 +5,16 @@ The main goal of our project is to implement a multifunctional system wich is ab
 
 The project is a web application developed using HTML, JS and CSS. We used HTML in order to define the static interface and structure of the page, CSS to apply some style attributes to the page components and JS to render the dynamic components of the page and manage all the user interactions with the page.
 
-![image](https://user-images.githubusercontent.com/99413338/153466062-5cc4423d-43fd-4890-80d6-a4aeb47b87f2.png)
+<img width="1232" alt="Schermata 2022-02-12 alle 16 56 00" src="https://user-images.githubusercontent.com/92021163/153718987-ab4523a6-1813-4ef8-9bfd-ae30d319ba4d.png">
+
 
 ## USER INTERFACE
 Our system is carachterised by three main sections:
 
 ## Recorder
 This sort of "Talkbox" allows the executor to record his voice or an instrument through the mic input.
-![image](https://user-images.githubusercontent.com/99413338/153432794-0ae2fb83-6d11-425a-a3ce-8d7c38b9004a.png)
+
+<img width="260" alt="Schermata 2022-02-12 alle 17 08 42" src="https://user-images.githubusercontent.com/92021163/153719066-8f96dc61-dfff-4c80-8987-63f29f7c92e9.png">
 
 Starting from the lower buttons, the ON/OFF switcher activate the recorder, and the REC button allows you to start and stop the recording whenever you want.
 
@@ -25,20 +27,25 @@ with the upper one you can choose where the sample starts, and with the lower on
 
 If you  want to hear and check what you have selected trough the knobs, there is a button TEST that allows you to do that.
 
-![image](https://user-images.githubusercontent.com/99413338/153433223-6e29ee1a-083f-4da1-8dd5-3413734c352c.png)
+<img width="58" alt="Schermata 2022-02-12 alle 17 02 36" src="https://user-images.githubusercontent.com/92021163/153719086-78de226d-4156-4e23-8ffd-59b26ee5d3e3.png">
+
+If you want to delete what you've recorded you can simply click the CLEAR button:
+
+<img width="58" alt="Schermata 2022-02-12 alle 17 16 37" src="https://user-images.githubusercontent.com/92021163/153719117-aaeb1dbb-63e7-409b-9c68-c0886f3e87bb.png">
 
 On the upper section there is the "Randomizer",a granular tool which takes random particles of the recorded signal and is activated by pressing the RND button. In this section you can also select the random speed with a slider that goes from 0.1 to 3.0: the system starts playing some random particles of the recording, that have the same length of the main section and change with the selected velocity. 
 
 ![image](https://user-images.githubusercontent.com/99413338/153433303-526d4a5e-42eb-457a-86a7-2c3c974d6be0.png)
 
-![image](https://user-images.githubusercontent.com/99413338/153433352-55bc4eff-e172-469f-9b08-b8227ce1db3f.png)![image](https://user-images.githubusercontent.com/99413338/153433369-01852615-c73b-4ca8-91f1-381efa337969.png)
+<img width="260" alt="Schermata 2022-02-12 alle 17 09 22" src="https://user-images.githubusercontent.com/92021163/153719134-037df0f5-d09b-4d2b-a4a7-8624148b3c87.png"><img width="260" alt="Schermata 2022-02-12 alle 17 13 38" src="https://user-images.githubusercontent.com/92021163/153719144-dde2bd16-e920-4eed-809d-eac66f640ceb.png">
+
     Fig.1 : selected section and random function OFF                                
     Fig.2 : selected section and random function ON
     
 ## Synth
 In this section a polyphonic synth is implemented. 
 
-![image](https://user-images.githubusercontent.com/99413338/153464379-2acbafb0-bef0-49e9-8529-d063989ce5c8.png)
+<img width="950" alt="Schermata 2022-02-12 alle 17 18 30" src="https://user-images.githubusercontent.com/92021163/153719192-da4d2767-8ae1-4551-8cdd-3374562c81cc.png">
 
 In the lower section, there is a 2-octave keyboard and some buttons: 
 
@@ -61,7 +68,7 @@ On the upper section there is a canvas where you can see the final wave emitted 
 
 ## Effect Rack
 
-![image](https://user-images.githubusercontent.com/99413338/153434708-3bf57136-1232-46c8-80e1-a008fd583f21.png)
+<img width="948" alt="Schermata 2022-02-12 alle 17 19 15" src="https://user-images.githubusercontent.com/92021163/153719212-8d73c368-87a3-4886-9e05-5bed95d30c2d.png">
 
 In this section some effects for the synth are implemented: starting from the left, there is a filters section, divided in low-pass and high-pass,  an echo section, where you can set the delay and the gain, and a frequency difference section, where you can set the detune value.
 All these function are implemented with some sliders. 
@@ -108,7 +115,7 @@ We thaught that the possibility to safe a proper set of values by the user could
 
 This function allows you through a dropdown window to select the proper preset of values that you want to use. A simple pop-up reminds you to the firebase folder where you can complete the personalization. 
 
-![firebase2](https://user-images.githubusercontent.com/82934687/153708759-d2558912-2726-4ba8-9aeb-6706c1d1a230.png)
+<img width="554" alt="Schermata 2022-02-12 alle 16 57 06" src="https://user-images.githubusercontent.com/92021163/153719279-8d43a712-220e-4e45-a7b2-d5ec6d48e5f0.png">
 
 This function has the task to upload and save the set of choosen values of all the features in the firebase database. 
 
