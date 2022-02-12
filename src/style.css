@@ -190,6 +190,8 @@ p {
   padding: 1em;
   width: 43vw;
   height: 28vh;
+  position: relative;
+  top:-5%;
 }
 
 /*Styling of the envelope viewer*/
