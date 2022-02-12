@@ -1,30 +1,33 @@
-# PROGETTO ACTAM
+# URJ-3000 - ACTAM PROJECT
 
 ## INTRODUCTION
 The main goal of our project is to implement a multifunctional system wich is able to give to the executor a creative tool for music production and live sessions, just using his laptop.
 
+The project is a web application developed using HTML, JS and CSS. We used HTML in order to define the static interface and structure of the page, CSS to apply some style attributes to the page components and JS to render the dynamic components of the page and manage all the user interactions with the page.
+
 ![image](https://user-images.githubusercontent.com/99413338/153466062-5cc4423d-43fd-4890-80d6-a4aeb47b87f2.png)
 
-## SECTIONS
+## USER INTERFACE
 Our system is carachterised by three main sections:
 
 ## Recorder
-This allows the executor to record his voice or an instrument through the mic input. ![image](https://user-images.githubusercontent.com/99413338/153432794-0ae2fb83-6d11-425a-a3ce-8d7c38b9004a.png)
+This sort of "Talkbox" allows the executor to record his voice or an instrument through the mic input.
+![image](https://user-images.githubusercontent.com/99413338/153432794-0ae2fb83-6d11-425a-a3ce-8d7c38b9004a.png)
 
-Starting from the lower buttons, the ON/OFF  switcher activate the recorder, and the REC button allows you to start and stop the recording whenever you want.
+Starting from the lower buttons, the ON/OFF switcher activate the recorder, and the REC button allows you to start and stop the recording whenever you want.
 
 ![image](https://user-images.githubusercontent.com/99413338/153433034-aab30257-6e64-4cb9-aae1-751ccfc7cbb6.png)
 
-Then you can select a section of our recording trough the two knobs implemented in the middle section: 
-with the upper one you can choose where the section starts, and with the lower one where the section ends.
+It is possible can select a sample of the recording trough the two knobs implemented in the middle section: 
+with the upper one you can choose where the sample starts, and with the lower one where the sample ends.
 
 ![image](https://user-images.githubusercontent.com/99413338/153433138-886f48d0-3493-4c97-8722-b658699dc605.png)
 
-If you  want to hear what you have selected trough the knobs, there is a button TEST that allows you to do that.
+If you  want to hear and check what you have selected trough the knobs, there is a button TEST that allows you to do that.
 
 ![image](https://user-images.githubusercontent.com/99413338/153433223-6e29ee1a-083f-4da1-8dd5-3413734c352c.png)
 
-On the upper section, there is a granular tool where, pressing the RND button and selecting the random speed with a slider, the system starts playing some random sections of the recording, that have the same length of the main section and that change with the selected velocity.
+On the upper section there is the "Randomizer",a granular tool which takes random particles of the recorded signal and is activated by pressing the RND button. In this section you can also select the random speed with a slider that goes from 0.1 to 3.0: the system starts playing some random particles of the recording, that have the same length of the main section and change with the selected velocity. 
 
 ![image](https://user-images.githubusercontent.com/99413338/153433303-526d4a5e-42eb-457a-86a7-2c3c974d6be0.png)
 
@@ -37,9 +40,7 @@ In this section a polyphonic synth is implemented.
 
 ![image](https://user-images.githubusercontent.com/99413338/153464379-2acbafb0-bef0-49e9-8529-d063989ce5c8.png)
 
-In the lower section, there is  keyboard and some buttons: 
-
-![image](https://user-images.githubusercontent.com/99413338/153434169-58ef23a7-ee39-475b-8d11-3a5d6e67e472.png)
+In the lower section, there is a 2-octave keyboard and some buttons: 
 
 the ON/OFF, the octave selector, where pressing + or – you can go up or down by an octave, and the switcher TALK/PLAY:  when the switcher is set on PLAY, the keyboard works for the synth section, but when is set to TALK, the keyboard becomes a pitch modulator for the recorder explained before. 
 
@@ -55,7 +56,6 @@ On the right side there is the envelopes secition, where you can set the attack,
 ![image](https://user-images.githubusercontent.com/99413338/153465328-3a4dde02-4fa7-4e36-9923-ade36f92f57a.png)
 
 On the upper section there is a canvas where you can see the final wave emitted by the synth. 
-
 ![image](https://user-images.githubusercontent.com/99413338/153434588-c0cf5a3d-7dad-4618-85b8-952ba4181a8c.png)
 
 
@@ -65,16 +65,14 @@ On the upper section there is a canvas where you can see the final wave emitted 
 
 In this section some effects for the synth are implemented: starting from the left, there is a filters section, divided in low-pass and high-pass,  an echo section, where you can set the delay and the gain, and a frequency difference section, where you can set the detune value.
 All these function are implemented with some sliders. 
-There is also a window on the left where you can select some presets for the evelopes and  the effects. 
+There is also a window on the left where you can select some presets for the envelopes and  the effects. For this last feature 
 
 
-
-
-## Some functions 
+## Peculiar functions 
 
 ### Random
 
-First of all we defined a function setIntervalX, that can call a function for a certain number of time ("repetirions" input) after a delay
+First of all we defined a function setIntervalX, that can call a function for a certain number of time ("repetitions" input) after a delay
 Then we implemented the PlayRandom function: we compare the length of the selected section(in seconds) with the updating random speed. In the case that the section is longer, the function plays a shorter section with duration equal to the random speed. On the other hand, if the section is shorter, the function plays the section X times, where X = DecNumber + IntNumber.
 
 ![image](https://user-images.githubusercontent.com/99413338/153580590-40913452-f748-4e76-a212-1667e7577f56.png)
@@ -83,9 +81,13 @@ In order to update the random sections, we implemented the updateRandom function
 
 ![image](https://user-images.githubusercontent.com/99413338/153580200-3d2fbe34-a256-488b-a466-9f7765dd07e6.png)
 
+### playNote
+![playnote](https://user-images.githubusercontent.com/82934687/153707871-a9445e68-474f-48e6-93a2-3dba8dbf4867.png)
+![playnote1](https://user-images.githubusercontent.com/82934687/153707881-0897e309-3817-4fd9-8842-5368021dd0d3.png)
+![platnote2](https://user-images.githubusercontent.com/82934687/153707892-1a1b99a7-f197-4df8-bd39-cdc650e78d56.png)
 
 
-
-
+### stopNote
+![stopnote](https://user-images.githubusercontent.com/82934687/153707901-22833387-4683-4df2-8986-ac3c5c741c3a.png)
 
 
