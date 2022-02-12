@@ -70,7 +70,7 @@ On the upper section there is a canvas where you can see the final wave emitted 
 
 <img width="948" alt="Schermata 2022-02-12 alle 17 19 15" src="https://user-images.githubusercontent.com/92021163/153719212-8d73c368-87a3-4886-9e05-5bed95d30c2d.png">
 
-In this section some effects for the synth are implemented: starting from the left, there is a filters section, divided in low-pass and high-pass,  an echo section, where you can set the delay and the gain, and a frequency difference section, where you can set the detune value.
+In this section some effects for the synth are implemented: starting from the left, there is a filters section, divided in low-pass and high-pass,  an echo section, where you can set the delay time and the gain, and a frequency difference section, where you can set the detune value that is the frequency off-set between the oscillators composing the note. This last efx is particularly interesting due to the possibility to create the "beating" effect.  
 All these function are implemented with some sliders. 
 There is also a window on the left where you can select some presets for the envelopes and  the effects. For this last feature 
 
@@ -90,7 +90,7 @@ In order to update the random sections, we implemented the updateRandom function
 
 ### playNote
 
-This function assigns 3 oscillator to each note. With this arrrangement a superposition of 3 oscillators is implemented, where the central takes the frequency from nFreq and is matched with the other two, which are positively/negatively shifted in frequency by a delta value w.r.t the central one. 
+This function assigns 3 oscillators to each note. With this arrrangement a superposition of 3 oscillators is implemented, where the central takes the frequency from nFreq and is matched with the other two, which are positively/negatively shifted in frequency by a delta value w.r.t the central one. 
 
 Moreover it defines the low-pass/hi-pass filters and the echo with all their parameters. All of them are after connected to a gain, which is linked with the Envelope parameters.
 
