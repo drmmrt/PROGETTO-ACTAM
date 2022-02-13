@@ -107,7 +107,7 @@ Furthermore a 'stop' is imposed for the 3 oscillators giving as time duration th
 ![stopnote](https://user-images.githubusercontent.com/82934687/153707901-22833387-4683-4df2-8986-ac3c5c741c3a.png)
 
 
-# Firebase Part
+# Firebase Implementation
 
 We thaught that the possibility to safe a proper set of values by the user could be a very useful feature. In order to to that we used the serverless platform Firebase as a database where to put the list of values of the settings choosen by the user.
 
