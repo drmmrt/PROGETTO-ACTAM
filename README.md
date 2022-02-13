@@ -103,7 +103,7 @@ Moreover it defines the low-pass/hi-pass filters and the echo with all their par
 
 This function basically set the time values of when the gain needs to be active using a setValue for the amplitude behaviour and a linearRamp to establish the time starting point (currentTime) and the ending point ('release' from the envelope).
 
-Furthermore a 'stop' is imposed for the 3 oscillators giving as time duration the same release value as before. A little time shift is added on each oscillator to avoid "click" sound when the sound stops. (?)
+Furthermore a 'stop' is imposed for the 3 oscillators giving as time duration the same release value as before. A little time shift is added on each oscillator to avoid "click" sound when the sound stops.
 ![stopnote](https://user-images.githubusercontent.com/82934687/153707901-22833387-4683-4df2-8986-ac3c5c741c3a.png)
 
 
