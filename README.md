@@ -45,16 +45,18 @@ On the upper section there is the "Randomizer",a granular tool which takes rando
 ## Synth
 In this section a polyphonic synth is implemented. 
 
+To have a connection with the recorder, a 'loop' button was built in order to have the possibility to loop the recorded buffer previously selected with the proper knobs. 
+
 <img width="950" alt="Schermata 2022-02-12 alle 17 18 30" src="https://user-images.githubusercontent.com/92021163/153719192-da4d2767-8ae1-4551-8cdd-3374562c81cc.png">
 
 In the lower section, there is a 2-octave keyboard and some buttons: 
 
-the ON/OFF, the octave selector, where pressing + or – you can go up or down by an octave, and the switcher TALK/PLAY:  when the switcher is set on PLAY, the keyboard works for the synth section, but when is set to TALK, the keyboard becomes a pitch modulator for the recorder explained before. 
+the ON/OFF, the octave shifter, where pressing + or – you can go up or down by an octave, and the switcher TALK/PLAY:  when the switcher is set on PLAY, the keyboard works for the synth section, but when is set to TALK, the keyboard becomes a pitch modulator for the recorder explained before. 
 
 ![image](https://user-images.githubusercontent.com/99413338/153434291-389e52cb-223f-4bc0-bb53-c7f2f1fede18.png)![image](https://user-images.githubusercontent.com/99413338/153434325-1bfb048d-f53f-403c-b10c-28db4d815aa8.png)
 
 In the middle section there are two different tools: 
-On the left, there is a waveshape selector, where you can choose the shape of your soundwave between: sine, triangular, square or sawtooth. 
+On the left, there is a waveform selector, where you can choose the shape of your soundwave between: sine, triangular, square or sawtooth. 
 
 ![image](https://user-images.githubusercontent.com/99413338/153434422-5343a02f-76f0-4e7b-9eee-7e47e5ee4203.png)
 
