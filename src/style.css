@@ -417,7 +417,7 @@ p {
 /*buttons used to select in which octave you want to play*/
 .octaveSelection {
   position: relative;
-  left: 2.75vh;
+  left: 2vh;
   /*background: linear-gradient(
     0deg,
     #dedede,
@@ -446,7 +446,7 @@ p {
 #turnoff-button {
   position: relative;
   top: 8vh;
-  left: 2.5vh;
+  left: 2vh;
   border-radius: 5px;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
