@@ -68,8 +68,7 @@ On the upper section there is a canvas where you can see the final wave emitted 
 
 ## Effect Rack
 
-<img width="948" alt="Schermata 2022-02-12 alle 17 19 15" src="<img width="948" alt="Effect rack" src="https://user-images.githubusercontent.com/82934687/153747461-afc7bfd4-4160-4df6-bf5d-bb71e01fff4b.png">
-">
+<img width="948" alt="Effect rack" src="https://user-images.githubusercontent.com/82934687/153748369-98b0e303-0746-487f-bcbe-8233644cd677.png">
 
 In this section some effects for the synth are implemented: starting from the left, there is a filters section, divided in low-pass and high-pass,  an echo section, where you can set the delay time and the gain, and a frequency difference section, where you can set the detune value that is the frequency off-set between the oscillators composing the note. This last efx is particularly interesting due to the possibility to create the "beating" effect.  
 All these function are implemented with some sliders. 
