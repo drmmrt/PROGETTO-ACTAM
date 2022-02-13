@@ -36,6 +36,7 @@ function dbCallback(snapshot) {
     })
   );
   console.log(preset);
+  //cicle used to create an option element for every preset saved in the firebase database
   while (q < preset.length) {
     var opt = document.createElement("option");
     opt.setAttribute("value", q);
@@ -43,6 +44,7 @@ function dbCallback(snapshot) {
     options.push(opt);
     q = q + 1;
   }
+  //cicle used to add every preset to the drop down selection element
   for (var i = 0; i < preset.length; i++) {
     DropDownSelector.firstElementChild.add(options[i]);
   }
@@ -55,6 +57,7 @@ window.IDDropDownSelector = IDDropDownSelector;
 
 var choosenValue;
 window.choosenValue = choosenValue;
+//function used to set all the sliders and wavetype from the selected preset from the database
 function valoreSelezionato() {
   console.log("You selected: ", DropDownSelector.firstElementChild.value);
   DropDownSelector.firstElementChild.value;
@@ -78,11 +81,12 @@ function valoreSelezionato() {
     preset[DropDownSelector.firstElementChild.value].EchoGain;
   document.querySelector("#deltaSlider").value =
     preset[DropDownSelector.firstElementChild.value].FreqDifference;
-  setActive(preset[DropDownSelector.firstElementChild.value].WaveType)
+  setActive(preset[DropDownSelector.firstElementChild.value].WaveType);
 }
 
 IDDropDownSelector.addEventListener("change", valoreSelezionato);
 
+//function used to upload, thanks to the SAVE button, all the values and wavetype from the synth to the database
 function upload() {
   let NewPreset = {};
   NewPreset.Name = NamePreset;
@@ -96,18 +100,21 @@ function upload() {
   NewPreset.EchoDelay = document.querySelector("#TimeOfDelay").value;
   NewPreset.EchoGain = document.querySelector("#GainOfDelay").value;
   NewPreset.FreqDifference = document.querySelector("#deltaSlider").value;
-  NewPreset.WaveType = document.querySelector(".waveform.active").classList.value.split(" ")[1];
+  NewPreset.WaveType = document
+    .querySelector(".waveform.active")
+    .classList.value.split(" ")[1];
   db.collection("presets")
     .add(NewPreset)
     .then(function (docRef) {
-      docRef.get().then(function (snap) {
-      });
+      docRef.get().then(function (snap) {});
     })
     .catch(function () {
       alert("Internal error: can't upload state to database");
     });
 
-  console.log( document.querySelector(".waveform.active").classList.value.split(" ")[1])
+  console.log(
+    document.querySelector(".waveform.active").classList.value.split(" ")[1]
+  );
 }
 
 window.upload = upload;
@@ -149,6 +156,7 @@ var dataTalkbox = new Float32Array(1024);
 aTalkbox.getFloatTimeDomainData(dataTalkbox);
 console.log(dataTalkbox);
 
+//function used to draw in the recorder's canvas what we record 
 function drawTalkbox() {
   aTalkbox.getFloatTimeDomainData(dataTalkbox);
   ctxTalkbox.clearRect(0, 0, 1000, 1000);
@@ -271,6 +279,7 @@ function rotate2(e) {
   knob2.style.transform = `rotate(${result2}deg)`;
   sliceEnd = result2 / 270 + 0.5;
 
+  //to limit the sliceEnd range between sliceStart and the end of the buffer
   if (sliceEnd <= sliceStart) {
     sliceEnd = sliceStart;
   }
@@ -300,6 +309,7 @@ var bindex = 0;
 
 var pn, mss;
 var recording = false;
+//async function used to import the data in the buffer from the microphone of the pc
 async function main() {
   var stream = await navigator.mediaDevices.getUserMedia({ audio: true });
   var mss = c.createMediaStreamSource(stream);
@@ -408,6 +418,7 @@ function playSlice(start, end, playbackRate) {
 var startrec = document.querySelector("#rec");
 var clickedKey;
 
+//function used to start or suspend the recording thanks to the REC button
 function StartSuspendRec() {
   recording = !recording;
   clickedKey = event.target;
@@ -418,6 +429,7 @@ startrec.addEventListener("click", StartSuspendRec);
 
 var IO = document.getElementById("accensione");
 
+//function used to activate or suspend the AudioContext from the switch in the recorder
 function ONOFF() {
   var ciao = document.getElementById("accensione").checked == true;
 
@@ -579,6 +591,7 @@ let oscillatorsON = 0;
 var n = 0;
 let delta = 0;
 
+//values of the envelopes when we refresh the page
 let adsrEnv = {
   attack: 0.05,
   decay: 0,
@@ -594,12 +607,12 @@ const ON = true;
 let isOn = ON;
 
 const keys = "w3e4rt6y7u8izsxdcvgbhnjm";
-//const keys = "zsxdcvgbhnjm";
 let oscillators = Array(keys.length);
 let oscillatorsPlusDelta = Array(keys.length);
 let oscillatorsMinusDelta = Array(keys.length);
 let gains = Array(keys.length);
 
+//what happens when we press a valid key from the keyboard
 document.onkeydown = (e) => {
   if (!keys.includes(e.key)) {
     // console.log(e.key);
@@ -622,11 +635,13 @@ document.onkeydown = (e) => {
   // console.log(parseInt(window.getComputedStyle(document.querySelector(`.${e.key}`)).backgroundColor.split(', ')[1])-50)
 };
 
+//what happens when we release the pressed key
 document.onkeyup = (e) => {
   if (!keys.includes(e.key)) return;
   stopNote(keys.indexOf(e.key), isOn);
 };
 
+//values of the effects when we refresh the page
 var LOWfilterSliderFreq = 0.5;
 var HIGHfilterSliderFreq = 0.001;
 var TimeDelay = 0;
@@ -635,7 +650,7 @@ var freqDiff = 0;
 let LOWfilter;
 let HIGHfilter;
 
-
+//function that start the sound when a valid key is pressed
 function playNote(nFreq, isOnFlag) {
   if (!isOnFlag) return;
   oscillatorsON = oscillatorsON + 1;
@@ -731,6 +746,7 @@ function playNote(nFreq, isOnFlag) {
     );
 }
 
+//lines of code used to change the effects when the value of a slider is changed
 var delaystime = document.querySelector("#TimeOfDelay");
 var delaysgain = document.querySelector("#GainOfDelay");
 
@@ -753,6 +769,7 @@ function SETTAFILTRI() {
   HIGHfilterSliderFreq = passaalto.value;
 }
 
+//function that stops the sound when the key is released
 function stopNote(nFreq, isOnFlag) {
   if (!isOnFlag) return;
   const now = ac.currentTime;
@@ -835,6 +852,7 @@ for (var i = 1; i <= keys.length; i++) {
   }
 }
 
+//function used for the OnOff button of the synth
 function setSwitcher(value) {
   isOn = value;
   document.querySelector("#turnoff-button").style = `background-color: ${
@@ -850,14 +868,11 @@ document.querySelector("#turnoff-button").style = `background-color: ${
   isOn ? "#7fc846" : "#760f00"
 }`;
 
-// funzione che imposta il bottone ricevuto in input come 'active'
+//function that activate (set as 'active') the button recived as input  
 function setActive(string) {
   document.querySelector(".waveform.active").classList.remove("active");
   document.querySelector(`.${string}`).classList.add("active");
 }
-
-// si crea una funzione setActive per ogni pulsante e la si conserva in un array
-// si assegnano ai bottoni le funzioni contenute nell'array
 
 document
   .querySelector(".sine")
@@ -873,7 +888,6 @@ document
   .addEventListener("click", () => setActive("sawtooth"));
 
 //VISUALIZZATORE
-
 // set up canvas context for visualizer
 
 var canvasElement = document.querySelector("canvas");
@@ -891,6 +905,7 @@ a.getFloatTimeDomainData(data);
 
 console.log(data);
 
+//function used to draw in real time the output wave from the synth
 function draw1() {
   a.getFloatTimeDomainData(data);
 
@@ -908,7 +923,7 @@ function draw1() {
 
 setInterval(draw1, 60);
 
-// INVILUPPI
+//ENVELOPES
 document.querySelector("#attack").innerHTML = adsrEnv.attack;
 document.querySelector("#decay").innerHTML = adsrEnv.decay;
 document.querySelector("#sustain").innerHTML = adsrEnv.sustain;
@@ -1003,6 +1018,7 @@ document.querySelector("#gainRange").addEventListener("mousemove", () => {
   document.querySelector("#gain").innerHTML = adsrEnv.gain;
 });
 
+//functions used to shift one octave up or down
 function plusPitch() {
   n = n + 1;
 }
@@ -1016,6 +1032,7 @@ var MINUS = document.getElementById("-");
 PLUS.addEventListener("click", plusPitch);
 MINUS.addEventListener("click", minusPitch);
 
+//lines of code used to set the pop-up banner that lets you name the preset that you want to save
 var SAVEPreset = document.getElementById("save");
 SAVEPreset.addEventListener("click", SaveButtonClicked);
 
