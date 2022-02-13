@@ -78,6 +78,7 @@ function valoreSelezionato() {
     preset[DropDownSelector.firstElementChild.value].EchoGain;
   document.querySelector("#deltaSlider").value =
     preset[DropDownSelector.firstElementChild.value].FreqDifference;
+  setActive(preset[DropDownSelector.firstElementChild.value].WaveType)
 }
 
 IDDropDownSelector.addEventListener("change", valoreSelezionato);
@@ -95,8 +96,8 @@ function upload() {
   NewPreset.EchoDelay = document.querySelector("#TimeOfDelay").value;
   NewPreset.EchoGain = document.querySelector("#GainOfDelay").value;
   NewPreset.FreqDifference = document.querySelector("#deltaSlider").value;
-  NewPreset.WaveType = db
-    .collection("presets")
+  NewPreset.WaveType = document.querySelector(".waveform.active").classList.value.split(" ")[1];
+  db.collection("presets")
     .add(NewPreset)
     .then(function (docRef) {
       docRef.get().then(function (snap) {
@@ -105,6 +106,8 @@ function upload() {
     .catch(function () {
       alert("Internal error: can't upload state to database");
     });
+
+  console.log( document.querySelector(".waveform.active").classList.value.split(" ")[1])
 }
 
 window.upload = upload;
@@ -589,7 +592,6 @@ let current;
 // const N = 24;
 const ON = true;
 let isOn = ON;
-let waveType = "sine";
 
 const keys = "w3e4rt6y7u8izsxdcvgbhnjm";
 //const keys = "zsxdcvgbhnjm";
