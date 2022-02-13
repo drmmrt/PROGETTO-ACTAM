@@ -1,3 +1,8 @@
 # PROGETTO ACTAM 2021/2022
 
-A Pen created on CodePen.io. Original URL: [https://codepen.io/drmmrt/pen/qBVRRZM](https://codepen.io/drmmrt/pen/qBVRRZM).
+ADVANCED CODING TOOLS AND METHODOLOGIES PROJECT.
+
+GROUPS COMPONENTS:
+Umberto Derme
+Riccardo Di Palma
+Jacopo Caucig
