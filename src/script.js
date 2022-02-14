@@ -156,7 +156,7 @@ var dataTalkbox = new Float32Array(1024);
 aTalkbox.getFloatTimeDomainData(dataTalkbox);
 console.log(dataTalkbox);
 
-//function used to draw in the recorder's canvas what we record 
+//function used to draw in the recorder's canvas what we record
 function drawTalkbox() {
   aTalkbox.getFloatTimeDomainData(dataTalkbox);
   ctxTalkbox.clearRect(0, 0, 1000, 1000);
@@ -779,9 +779,9 @@ function stopNote(nFreq, isOnFlag) {
   );
   gains[nFreq].gain.linearRampToValueAtTime(0, now + adsrEnv.release);
   oscillatorsON = oscillatorsON - 1;
-  //oscillators[nFreq].stop(now + adsrEnv.release + 0.001);
-  //oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.003);
-  //oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.005);
+  oscillators[nFreq].stop(now + adsrEnv.release + 0.001);
+  oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.003);
+  oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.005);
   gains[nFreq].disconnect(a);
 
   var colorCode =
@@ -868,7 +868,7 @@ document.querySelector("#turnoff-button").style = `background-color: ${
   isOn ? "#7fc846" : "#760f00"
 }`;
 
-//function that activate (set as 'active') the button recived as input  
+//function that activate (set as 'active') the button recived as input
 function setActive(string) {
   document.querySelector(".waveform.active").classList.remove("active");
   document.querySelector(`.${string}`).classList.add("active");
