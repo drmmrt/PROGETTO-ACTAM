@@ -366,14 +366,14 @@ function drawBuffer() {
   ctxTalkbox.strokeStyle = "#000000";
   window.requestAnimationFrame(drawBuffer);
 
-  ctxTalkbox.beginPath();
-  ctxTalkbox.fillStyle = "lightgreen";
-  ctxTalkbox.fillRect(
-    canvasRecorder.width * sliceStart,
-    canvasRecorder.height,
-    canvasRecorder.width * sliceEnd - canvasRecorder.width * sliceStart,
-    canvasRecorder.height
-  );
+  // ctxTalkbox.beginPath();
+  // ctxTalkbox.fillStyle = "lightgreen";
+  // ctxTalkbox.fillRect(
+  //   canvasRecorder.width * sliceStart,
+  //   canvasRecorder.height,
+  //   canvasRecorder.width * sliceEnd - canvasRecorder.width * sliceStart,
+  //   canvasRecorder.height
+  // );
   ctxTalkbox.stroke();
 
   //draw random slice bound
