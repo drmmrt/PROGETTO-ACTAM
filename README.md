@@ -97,8 +97,10 @@ This function assigns 3 oscillators to each note. With this arrrangement a super
 Moreover it defines the low-pass/hi-pass filters and the echo with all their parameters. All of them are after connected to a gain, which is linked with the Envelope parameters.
 
 ![playnote](https://user-images.githubusercontent.com/82934687/153707871-a9445e68-474f-48e6-93a2-3dba8dbf4867.png)
-![playnote1](https://user-images.githubusercontent.com/82934687/153707881-0897e309-3817-4fd9-8842-5368021dd0d3.png)
-![platnote2](https://user-images.githubusercontent.com/82934687/153707892-1a1b99a7-f197-4df8-bd39-cdc650e78d56.png)
+
+<img width="547" alt="Schermata 2022-02-14 alle 14 00 21" src="https://user-images.githubusercontent.com/92021163/153869019-257e6440-13bf-4173-8357-74ea6b030919.png">
+
+![playnote2](https://user-images.githubusercontent.com/82934687/153707892-1a1b99a7-f197-4df8-bd39-cdc650e78d56.png)
 
 
 ### stopNote
