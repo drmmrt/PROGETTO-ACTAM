@@ -119,7 +119,7 @@ We thaught that the possibility to safe a proper set of values by the user could
 
 This function allows you through a dropdown window to select the proper preset of values that you want to use. A simple pop-up reminds you to the firebase folder where you can complete the personalization. 
 
-<img width="554" alt="Schermata 2022-02-12 alle 16 57 06" src="https://user-images.githubusercontent.com/92021163/153719279-8d43a712-220e-4e45-a7b2-d5ec6d48e5f0.png">
+<img width="862" alt="Schermata 2022-02-14 alle 14 45 24" src="https://user-images.githubusercontent.com/92021163/153875822-e1053389-d43b-490a-8234-0bdd6b018a84.png">
 
 This function has the task to upload and save the set of choosen values of all the features in the firebase database. 
 
