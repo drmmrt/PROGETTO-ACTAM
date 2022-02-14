@@ -685,7 +685,7 @@ function playNote(nFreq, isOnFlag) {
 
   //HIGH-PASS FILTER
   HIGHfilter = ac.createBiquadFilter();
-  HIGHfilter.type = "lowpass";
+  HIGHfilter.type = "highpass";
   HIGHfilter.frequency.value = HIGHfilterSliderFreq * maxFilterFreq;
 
   //ECHO or DELAY
@@ -779,9 +779,9 @@ function stopNote(nFreq, isOnFlag) {
   );
   gains[nFreq].gain.linearRampToValueAtTime(0, now + adsrEnv.release);
   oscillatorsON = oscillatorsON - 1;
-  oscillators[nFreq].stop(now + adsrEnv.release + 0.001);
-  oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.003);
-  oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.005);
+  //oscillators[nFreq].stop(now + adsrEnv.release + 0.001);
+  //oscillatorsPlusDelta[nFreq].stop(now + adsrEnv.release + 0.003);
+  //oscillatorsMinusDelta[nFreq].stop(now + adsrEnv.release + 0.005);
   gains[nFreq].disconnect(a);
 
   var colorCode =
