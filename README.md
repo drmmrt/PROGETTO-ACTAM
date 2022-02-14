@@ -124,7 +124,7 @@ This function has the task to upload and save the set of choosen values of all t
 
 # Video Demo
 
-If you want to see the URJ-3000 in action, you can find a demo video here!
+If you want to see the URJ-3000 in action, you can find a demo video [here](https://www.youtube.com/watch?v=piUWdv34XuM)!
 
 
 # Group Components
