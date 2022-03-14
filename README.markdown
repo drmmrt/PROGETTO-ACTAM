@@ -127,8 +127,8 @@ This function has the task to upload and save the set of choosen values of all t
 
 In order to run the system, you can install "parcel" on your device and run the code: 
 - Open the code on an editor (like Visual Studio Code)
-- Write "npm install parcel" to install parcel.js
-- Write "npx parcel src/index.html"
+- From the terminal, type "npm install parcel" to install parcel.js
+- Type "npx parcel src/index.html"
 - Open http://localhost:1234/ in your browser
 - Play with the URJ-3000.
 
