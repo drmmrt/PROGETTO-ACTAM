@@ -123,6 +123,10 @@ This function allows you through a dropdown window to select the proper preset o
 
 This function has the task to upload and save the set of choosen values of all the features in the firebase database. 
 
+# Run It with Parcel
+
+In order to run the system, you can install "parcel" on your device and run the code with your PowerShell, or clic here and have fun!
+
 
 # Video Demo
 
